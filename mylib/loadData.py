@@ -9,7 +9,6 @@ def load(dataset="Development of Average Annual Wages.csv"):
     # Create a table named 'wages'
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS wages (
-        id INTEGER PRIMARY KEY AUTOINCREMENT,
         Country TEXT,
         year_2000 DOUBLE,
         year_2010 DOUBLE,

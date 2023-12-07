@@ -1,5 +1,4 @@
 from mylib.operations import (
-    close_connection,
     read_wages_data_by_country,
     read_all_wages_data
 )
@@ -9,15 +8,14 @@ import sqlite3
 
 def main():
     # Load the dataset into the SQLite database
-    load("dataset/Development of Average Annual Wages.csv")  # Import data from CSV
+    load()  # Import data from CSVs
 
     # Print population data
-    read_wages_data_by_country("France")
+    #print(read_wages_data_by_country("France"))
 
-    read_all_wages_data()
+    print(read_all_wages_data())
 
     # Close the connection
-    close_connection()
     return 1
 
 def get_wages():

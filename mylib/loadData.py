@@ -1,7 +1,8 @@
 import csv
 import sqlite3
 
-def load(dataset="Development of Average Annual Wages.csv"):
+# Extract, load, and merge the two wages datasets
+def load(dataset_1, dataset_2):
     # Connect to SQLite database
     conn = sqlite3.connect('wages.db')
     cursor = conn.cursor()
@@ -9,7 +10,8 @@ def load(dataset="Development of Average Annual Wages.csv"):
     # Create a table named 'wages'
     cursor.execute('''
     CREATE TABLE IF NOT EXISTS wages (
-        Country TEXT,
+        Country TEXT PRIMARY KEY,
+        Region TEXT,
         year_2000 DOUBLE,
         year_2010 DOUBLE,
         year_2020 DOUBLE,
@@ -17,14 +19,22 @@ def load(dataset="Development of Average Annual Wages.csv"):
     )
     ''')
 
-    # Read the CSV file and insert data into the SQLite database
-    with open(dataset, 'r') as csv_file:
+        # Load data from first CSV file
+    with open(dataset_1, 'r') as csv_file:
         csv_reader = csv.DictReader(csv_file)
         for row in csv_reader:
             cursor.execute('''
-            INSERT INTO wages (Country, year_2000, year_2010, year_2020, year_2022) 
+            INSERT OR IGNORE INTO wages (Country, Region, year_2000, year_2010, year_2020) 
             VALUES (?, ?, ?, ?, ?)
-            ''', (row["Country"], row["year_2000"], row["year_2010"], row["year_2020"], row["year_2022"]))
+            ''', (row["Country"], row["Region"], row["year_2000"], row["year_2010"], row["year_2020"]))
+
+    # Load data from second CSV file, updating existing rows
+    with open(dataset_2, 'r') as csv_file:
+        csv_reader = csv.DictReader(csv_file)
+        for row in csv_reader:
+            cursor.execute('''
+            UPDATE wages SET year_2022 = ? WHERE Country = ?
+            ''', (row["year_2022"], row["Country"]))
 
     # Commit changes and close the SQLite connection
     conn.commit()

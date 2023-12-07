@@ -1,22 +1,3 @@
-// Assuming you have a global variable with the list of countries
-const countries = [
-    "Iceland", "Luxembourg", "United States", "Switzerland", "Belgium", 
-    "Denmark", "Austria", "Netherlands", "Australia", "Canada", "Germany", 
-    "United Kingdom", "Norway", "France", "Ireland", "Finland", "New Zealand", 
-    "Sweden", "South Korea", "Slovenia", "Italy", "Israel", "Lithuania", 
-    "Spain", "Japan", "Poland", "Estonia", "Latvia", "Czech Republic", 
-    "Chile", "Costa Rica", "Portugal", "Hungary", "Slovakia", "Greece", "Mexico"
-];
-
-// Populate the dropdown
-const countrySelect = document.getElementById('country-select');
-countries.forEach((country) => {
-    const option = document.createElement('option');
-    option.value = country;
-    option.text = country;
-    countrySelect.appendChild(option);
-});
-
 // Add event listener for the button
 document.getElementById('get-wages-btn').addEventListener('click', function() {
     const countrySelectElement = document.getElementById('country-select');
@@ -34,11 +15,8 @@ document.getElementById('get-wages-btn').addEventListener('click', function() {
 // Function to update the chart and display country name with wages
 function updateChart(data, selectedCountry) {
     const countryInfo = document.getElementById('country-info');
-    countryInfo.innerHTML = `<h2>${selectedCountry}</h2>
-        <p>Year 2000: ${data.wages[0]}</p>
-        <p>Year 2010: ${data.wages[1]}</p>
-        <p>Year 2020: ${data.wages[2]}</p>
-        <p>Year 2022: ${data.wages[3]}</p>`;
+    countryInfo.innerHTML = `<h2>${selectedCountry}</h2>` +
+        data.years.map((year, index) => `<p>Year ${year}: $${data.wages[index].toLocaleString()}</p>`).join('');
 
     const ctx = document.getElementById('wage-chart').getContext('2d');
     if (window.myChart) {
@@ -47,14 +25,14 @@ function updateChart(data, selectedCountry) {
     window.myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [2000, 2010, 2020, 2022], // This should be an array of years
+            labels: data.years, // This uses the years array from the data
             datasets: [{
                 label: `${selectedCountry} Wages Growth`,
-                data: data.wages, // This should be an array of wage values
+                data: data.wages, // This uses the wages array from the data
                 fill: false,
-                borderColor: 'red', // Change the line color to red
-                backgroundColor: 'rgba(255, 99, 132, 0.2)', // Optional: change the fill color
-                borderWidth: 3, // Make the line thicker
+                borderColor: 'rgb(75, 192, 192)', // A more colorful line color
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', // A matching fill color
+                borderWidth: 3,
                 tension: 0.1
             }]
         },
@@ -62,17 +40,30 @@ function updateChart(data, selectedCountry) {
             responsive: true,
             scales: {
                 y: {
-                    beginAtZero: false // Set to true if you want the scale to start at zero
+                    beginAtZero: false,
+                    ticks: {
+                        // Include a dollar sign in the ticks and comma as thousands separators
+                        callback: function(value, index, values) {
+                            return '$' + value.toLocaleString();
+                        }
+                    }
                 }
             },
             plugins: {
                 legend: {
                     labels: {
-                        // This more specific font property overrides the global property
                         font: {
                             size: 14,
                             weight: 'bold'
                         }
+                    }
+                }
+            },
+            animation: {
+                // New property to animate the chart when it loads
+                onProgress: function(animation) {
+                    if (animation.currentStep / animation.numSteps === 1) {
+                        // Animate elements here if needed when the animation is complete
                     }
                 }
             }

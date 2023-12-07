@@ -3,23 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wage Growth Visualization</title>
+    <title>World Bank Average Wages Data Dashboard</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <!-- Include Chart.js -->
+    <!-- Custom styles for a fancier user interface -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        #country-select, #get-wages-btn {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        #get-wages-btn {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        #get-wages-btn:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+
+        #country-info {
+            margin-top: 20px;
+        }
+
+        #chart-container {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+
+        canvas {
+            width: 100% !important;
+            height: auto !important;
+        }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <h1>Wage Growth Visualization</h1>
+    <h1>World Bank Average Wages Data Dashboard</h1>
+    <h3>Select Country:</h3>
     <select id="country-select">
         {% for country in countries %}
-        <option value="{{ country }}">{{ country }}</option>
+            <option value="{{ country }}">{{ country }}</option>
         {% endfor %}
-    </select>    
-    <button id="get-wages-btn">Get Wages Growth</button>
-    
-    <!-- New element for displaying country name and wages -->
+    </select>
+    <button id="get-wages-btn">Get Wages Growth Chart</button>
     <div id="country-info"></div>
-
     <div id="chart-container">
         <canvas id="wage-chart"></canvas>
     </div>

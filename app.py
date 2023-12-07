@@ -30,4 +30,4 @@ def get_wages():
         return jsonify({'error': 'Data not found for the selected country'}), 404
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=7000)

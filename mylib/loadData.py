@@ -1,7 +1,7 @@
 import csv
 import sqlite3
 
-def load(dataset="Development of Average Annual Wages.csv"):
+def load(dataset="dataset/Development of Average Annual Wages.csv"):
     # Connect to SQLite database
     conn = sqlite3.connect('wages.db')
     cursor = conn.cursor()

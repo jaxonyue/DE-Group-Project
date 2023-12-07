@@ -17,3 +17,4 @@ openai
 requests
 python-dotenv
 docker
+locust

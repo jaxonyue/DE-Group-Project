@@ -1,5 +1,8 @@
 # Data Engineering Group Project [![CI](https://github.com/jaxonyue/DE-Group-Project/actions/workflows/cicd.yml/badge.svg)](https://github.com/jaxonyue/DE-Group-Project/actions/workflows/cicd.yml)
 
+- Flask App: https://wagesviz.azurewebsites.net/
+- YouTube Demo:
+
 ## Team Members
 
 Team: Jaxon Yue, Haochong(Harry) Xia, Vivian Zhang, Eve

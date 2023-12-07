@@ -42,13 +42,19 @@ https://wagess.azurewebsites.net/
 - `Dockerfile`: For containerizing the application
 
 ## Key components
-- **Microservice**: Use Python to deploy a seb app that can display diagnostic graphs of wages change of 36 countries.
+- **Microservice**: Use Python to deploy a web app that can display tables and line graphs of wages growth of 36 countries.
 - **Data Engineering**: Using `SQLite database` to manage wages data.
 - **Load Testing**: Test 10000 request per second.
 - **Continuous Integration and Continuous Delivery**: Automated using GitHub Actions.
 - **Docker**: Containerize the application.
 - **locust**: Package used for Loading test.
 - **CI/CD**: CI/CD is implemented using GitHub Actions for automated testing and deployment.
+
+## App Introduction
+- This app is a simple web app that can provide you a table with wage information and a line graph about the wage growth of the selected country. It includes following features:
+1. A title indicates the purpose of this app
+2. A button to select which country you are interested in
+3. A button to generate the graph
 
 ## Key steps to run the application
 1. Git clone the repo, the environment will automatically be set up with necessary dependencies installed. If it doesn't, use `make install` to install `requirements.txt`.

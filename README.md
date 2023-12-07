@@ -39,9 +39,6 @@ docker push <insert member username>/wages
 docker run -p 7000:7000 wages
 ```
 
-## Endpoints
-http://0.0.0.0:7000/api/wages
-
 ## Database Setup
 Loading the data use function `load` in `loadData.py`.
 

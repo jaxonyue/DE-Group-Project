@@ -40,13 +40,13 @@ resource "azurerm_linux_web_app" "webapp" {
   
   app_settings = {    
     "WEBSITES_ENABLE_APP_SERVICE_STORAGE" = "false"
-    "WEBSITES_PORT"                       = "50505"
+    "WEBSITES_PORT"                       = "7000"
     "DOCKER_REGISTRY_SERVER_URL"          = "https://index.docker.io/v1"     
   }
 
   site_config {
     application_stack {
-      docker_image     = "jeremymtan/definal2"
+      docker_image     = "hiddenlayerr/wagesviz"
       docker_image_tag = "latest"
     }
     always_on = true

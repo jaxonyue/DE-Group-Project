@@ -1,6 +1,6 @@
 # Data Engineering Group Project [![CI](https://github.com/jaxonyue/DE-Group-Project/actions/workflows/cicd.yml/badge.svg)](https://github.com/jaxonyue/DE-Group-Project/actions/workflows/cicd.yml)
 
-- Flask App: https://wagesviz.azurewebsites.net/
+- Flask App: https://wagess.azurewebsites.net/
 - YouTube Demo:
 
 ## Team Members
@@ -86,15 +86,15 @@ docker run -p 7000:7000 wages
 - We use `locust` to do the load test with several different setting of parameters. `Locust` is an open source load testing tool used to test the performance of web applications. It is designed to be easy to use, highly customizable, and scalable. Locust allows us to simulate the behavior of thousands of concurrent users (virtual users) and measure the performance of our application under different loads.
 - We use the following command to run the load test:
 ```
-locust -f load_test.py --host=https://wagesviz.azurewebsites.net
+locust -f load_test.py --host=https://wagess.azurewebsites.net/
 ```
 - After running the command, we can open the web page `http://localhost:8089/` to see the load test user interface. We can set the number of users and the spawn rate to simulate the load. After clicking the `Start swarming` button, the load test will start. The result will be shown in the web page.
 
-- At the beginning, we are using the basic server plan with only one instance, and we set the number of users to 10000 and the spawn rate to 100. The test result is shown as below:
+- At the beginning, we are using the standard S1 server plan with only one instance, and we set the number of users to 10000 and the spawn rate to 100. The test result is shown as below:
 
 ![Alt text](<10000-100 original.png>)
 
-As we can see, the average RPS(request per second) is about 100, and the maximum is 395.7 with 206.5 failures. The total percentage of faliues is also a little high. In addition, after we adjust the number of users to 100000 and the spawn rate to 1000, it even could't run. Hence, we upgrade the plan of the server in Azure, and increase the number of instance. Although, according to Azure website, the highest instances we should be able to reach is 30, but we only reach 11, and the result did get better.
+As we can see, the average RPS(request per second) is about 100, and the maximum is 395.7 with 206.5 failures. The total percentage of faliues is also a little high. In addition, after we adjust the number of users to 100000 and the spawn rate to 1000, it even could't run. Hence, we upgrade the plan of the server in Azure, and increase the number of instance. Although, according to Azure website, the highest instances we should be able to reach is 30, but we only reach 10, and the result did get better.
 
 10000 users with spawn rate of 100:
 
@@ -108,7 +108,7 @@ As we can see, the average RPS(request per second) is about 100, and the maximum
 
 ![Alt text](<100000-1000 update table.png>)
 
-Next, we upgrade the plan to the highest one, and we got a pretty good result:
+Next, we upgrade the plan to the highest one(Premium v3 P5mv3), and we got a pretty good result:
 
 ![Alt text](<10000-100 final.jpeg>)
 
@@ -142,4 +142,5 @@ Use larger dataset.
     1. They helps me to write code faster. 
     2. They helps me to write code with less errors. 
 
-## Video
+## Reference
+https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up

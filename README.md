@@ -8,7 +8,7 @@
 Team: Jaxon Yue, Haochong(Harry) Xia, Vivian Zhang, Eve
 
 ## Overview
-We use python to build this Flask app in `app.py`. This app provide the diagnosis of the wages change of 38 countries, which includes a data pipeline,a load testing with 10000 request per second, data engineering, and CI/CD integrations.
+We use python to build this Flask app in `app.py`. This app provide the diagnosis of the World Bank Average Wages growth of 38 countries, which includes a data pipeline,a load testing with 10000 request per second, data engineering, and CI/CD integrations.
 
 The Overall Archetecture of our final project is shown as below:
 
@@ -32,10 +32,6 @@ The Overall Archetecture of our final project is shown as below:
 - Quantitative Assessment
     Include a quantitative assessment of its reliability and stability. Use data science fundamentals to describe system performance, e.g., average latency per request at different levels of requests per second (100, 1000, etc.). Think of the software system as a data science problem that needs to be described using data science principles.
 
-
-## Link to the deployed app:
-https://wagesviz.azurewebsites.net/
-
 ## File Descriptions
 - `app.py`: Flask application
 - `Development of Average Annual Wages_1.csv` and `Development of Average Annual Wages_2.csv`: dataset.
@@ -45,7 +41,7 @@ https://wagesviz.azurewebsites.net/
 - `Dockerfile`: For containerizing the application
 
 ## Key components
-- **Microservice**: Use Python to deploy a web app that can display tables and line graphs of wages growth of 38 countries.
+- **Microservice**: Use Python to deploy a web app that can display tables and line graphs of World Bank Average Wages growth of 38 countries.
 - **Data Engineering**: Using `SQLite database` to manage wages data.
 - **Load Testing**: Test 10000 request per second.
 - **Continuous Integration and Continuous Delivery**: Automated using GitHub Actions.
@@ -69,9 +65,9 @@ https://wagesviz.azurewebsites.net/
 4. Use the following command to log into DockerHub, build docker image and push to container:
 ```
 echo "your_password" | docker login --username your_username --password-stdin
-docker build -t <insert member username>/wages .
-docker push <insert member username>/wages
-docker run -p 7000:7000 wages
+docker build -t <insert member username>/wagess .
+docker push <insert member username>/wagess
+docker run -p 7000:7000 wagess
 ```
 
 5. Create a new web app service on Azure, select Docker Container and deploy the DockerHub image.

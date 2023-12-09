@@ -140,3 +140,5 @@ Use larger dataset.
 
 ## Reference
 https://learn.microsoft.com/en-us/azure/app-service/manage-scale-up
+
+https://learn.microsoft.com/en-us/azure/app-service/troubleshoot-diagnostic-logs

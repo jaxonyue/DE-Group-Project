@@ -83,10 +83,44 @@ docker run -p 7000:7000 wages
 7. Run the app using the URL provided by Azure.
 
 ## Load test
-| Type | Name        | Request Count | Failure Count | Median Response Time | Average Response Time | Min Response Time | Max Response Time | Average Content Size | Requests/s | Failures/s | 50%   | 66%   | 75%   | 80%   | 90%   | 95%   | 98%    | 99%     | 99.9%   | 99.99%   | 100%     |
-|------|-------------|---------------|---------------|----------------------|------------------------|-------------------|-------------------|----------------------|------------|------------|-------|-------|-------|-------|-------|-------|--------|---------|----------|----------|----------|
-| GET  | /           | 866,174       | 24,667        | 14,000.0             | 49,364.32              | 26.83             | 2,390,330.70      | 4,176.57             | 360.65     | 10.27      | 14,000 | 27,000 | 31,000 | 33,000 | 46,000 | 67,000 | 506,000 | 1,595,000 | 1,958,000 | 2,287,000 | 2,390,000 |
-|      | Aggregated  | 866,174       | 24,667        | 14,000.0             | 49,364.32              | 26.83             | 2,390,330.70      | 4,176.57             | 360.65     | 10.27      | 14,000 | 27,000 | 31,000 | 33,000 | 46,000 | 67,000 | 506,000 | 1,595,000 | 1,958,000 | 2,287,000 | 2,390,000 |
+- We use `locust` to do the load test with several different setting of parameters. `Locust` is an open source load testing tool used to test the performance of web applications. It is designed to be easy to use, highly customizable, and scalable. Locust allows us to simulate the behavior of thousands of concurrent users (virtual users) and measure the performance of our application under different loads.
+- We use the following command to run the load test:
+```
+locust -f load_test.py --host=https://wagesviz.azurewebsites.net
+```
+- After running the command, we can open the web page `http://localhost:8089/` to see the load test user interface. We can set the number of users and the spawn rate to simulate the load. After clicking the `Start swarming` button, the load test will start. The result will be shown in the web page.
+
+- At the beginning, we are using the basic server plan with only one instance, and we set the number of users to 10000 and the spawn rate to 100. The test result is shown as below:
+
+![Alt text](<10000-100 original.png>)
+
+As we can see, the average RPS(request per second) is about 100, and the maximum is 395.7 with 206.5 failures. The total percentage of faliues is also a little high. In addition, after we adjust the number of users to 100000 and the spawn rate to 1000, it even could't run. Hence, we upgrade the plan of the server in Azure, and increase the number of instance. Although, according to Azure website, the highest instances we should be able to reach is 30, but we only reach 11, and the result did get better.
+
+10000 users with spawn rate of 100:
+
+![Alt text](<10000-100 update.png>)
+
+![Alt text](<10000-100 update table.png>)
+
+100000 users with spawn rate of 1000:
+
+![Alt text](<100000-1000 update.png>)
+
+![Alt text](<100000-1000 update table.png>)
+
+Next, we upgrade the plan to the highest one, and we got a pretty good result:
+
+![Alt text](<10000-100 final.jpeg>)
+
+Finally, we adjust the user to 100000 with spawn rate of 1000 and find a suitable waiting time between each request,
+
+![Alt text](<final result-1.png>)
+
+The test result is shown as below:
+
+![Alt text](<final table.png>)
+
+Analysis: By applying data science principles, we've quantitatively assessed the system's reliability and stability, focusing on average latency, failure rates, and response time percentiles at different levels of load. There were 28,531 failures with 971,573 total requests, resulting in a failure rate of approximately 2.94% (28,531 / 971,573), which is already very low, indicating the robustness of our server. There's a noticeable increase in average latency as the system load goes from 100 Requests/s to 1,000 Requests/s. The increase in average latency suggests that the system may be approaching or experiencing a performance bottleneck as the load intensifies. The system's scalability is a key concern, as it should ideally handle higher loads with minimal impact on latency. In our test result, we notice the wide range between the minimum and maximum response times (30 to 2264875 milliseconds), which is inteersting since we didn't expect the system's performance will be various in this large scale. We think that this may due to the difference of network traffics, which make us to conclude that in order to get a more resonable result, we need to run the test multiple times, and wait enough time for each round of test.
 
 
 ## Limitations

@@ -8,7 +8,7 @@
 Team: Jaxon Yue, Haochong(Harry) Xia, Vivian Zhang, Eve
 
 ## Overview
-We use python to build this Flask app in `app.py`. This app provide the diagnosis of the wages change of 36 countries, which includes a data pipeline,a load testing with 10000 request per second, data engineering, and CI/CD integrations.
+We use python to build this Flask app in `app.py`. This app provide the diagnosis of the wages change of 38 countries, which includes a data pipeline,a load testing with 10000 request per second, data engineering, and CI/CD integrations.
 
 The Overall Archetecture of our final project is shown as below:
 
@@ -34,18 +34,18 @@ The Overall Archetecture of our final project is shown as below:
 
 
 ## Link to the deployed app:
-https://wagess.azurewebsites.net/
+https://wagesviz.azurewebsites.net/
 
 ## File Descriptions
 - `app.py`: Flask application
-- `Development of Average Annual Wages.csv`: dataset.
+- `Development of Average Annual Wages_1.csv` and `Development of Average Annual Wages_2.csv`: dataset.
 - `loadData.py`: load the csv.
 - `operations`: SQLite operation on the dataset.
 - `Makefile`: Contains commands for setting up the environment, testing, linting, and formatting
 - `Dockerfile`: For containerizing the application
 
 ## Key components
-- **Microservice**: Use Python to deploy a web app that can display tables and line graphs of wages growth of 36 countries.
+- **Microservice**: Use Python to deploy a web app that can display tables and line graphs of wages growth of 38 countries.
 - **Data Engineering**: Using `SQLite database` to manage wages data.
 - **Load Testing**: Test 10000 request per second.
 - **Continuous Integration and Continuous Delivery**: Automated using GitHub Actions.
@@ -62,7 +62,7 @@ https://wagess.azurewebsites.net/
 ## Key steps to run the application
 1. Git clone the repo, the environment will automatically be set up with necessary dependencies installed. If it doesn't, use `make install` to install `requirements.txt`.
 
-2. Loading the data use function `load` in `loadData.py`. The data is stored in `Development of Average Annual Wages.csv`. The database is stored in `wages.db`.
+2. Loading the data use function `load` in `loadData.py`. The data is stored in `Development of Average Annual Wages_1.csv` and `Development of Average Annual Wages_2.csv`. The database is stored in `wages.db`.
 
 3. Use `python app.py` to run the application locally to verify that it works.
 
@@ -83,8 +83,10 @@ docker run -p 7000:7000 wages
 7. Run the app using the URL provided by Azure.
 
 ## Limitations
+Dataset is samll. We only have 38 countries' wages data. We can add more countries' data to make the app more useful.
 
 ## Potential areas for improvement
+Use larger dataset.
 
 ## Using Copilot and Chatgpt:
 - We use copilot in two ways while writing my code:

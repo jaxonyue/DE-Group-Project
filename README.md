@@ -1,7 +1,7 @@
 # Data Engineering Group Project [![CI](https://github.com/jaxonyue/DE-Group-Project/actions/workflows/cicd.yml/badge.svg)](https://github.com/jaxonyue/DE-Group-Project/actions/workflows/cicd.yml)
 
 - Flask App: https://wagess.azurewebsites.net/
-- YouTube Demo:
+- YouTube Demo: https://www.youtube.com/watch?v=L81pk2aqBRk
 
 ## Team Members
 

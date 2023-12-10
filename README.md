@@ -128,11 +128,14 @@ The test result is shown as below:
 
 
 ## Limitations
-Dataset is small. We only have 38 countries' wages data. We can add more countries' data to make the app more useful.
+The first limitation is that we use a small dataset to do the app, which only have 38 countries' wages data. We can add more countries' data to make the app more informational and useful. In addition, we did not apply any API to connect to data here, which might not be effective and automative. As a result, we need to upload updated data mannually, which is time-consuming. Also, the project rely solely on CSV files for data storage. Integrating additional data sources or databases could enrich the application's data and provide more diverse and up-to-date information.
+
+The second limitation is that While we have performed load testing and improved performance by scaling up and out, there is still a limitation on scalability due to server limitations and potential bottlenecks. Further optimization and distribution of resources could enhance the system's ability to handle even larger loads.
+
+The third limitation is that the user interface of the application is relatively basic, with room for improvement in terms of design and user experience. Enhancing the user interface with more interactive features and visualization options could make the application more user-friendly.
 
 ## Potential areas for improvement
-Use larger dataset.
-
+First, we could use larger dataset with more information of wage and automate the data loading process with data api of resouces. Another way to improve data loading could be transfering data to databricks and combine it with Azure service. We could also consider enriching the dataset with additional economic indicators, such as inflation rates, GDP growth, or employment statistics. This would allow users to analyze wage growth in a broader economic context.For the user interface, we could make it more intuitive and visually appealing. Implement interactive charts, filters, and user customization options to provide a richer user experience.
 ## Using Copilot and Chatgpt:
 - We use copilot in two ways while writing my code:
 

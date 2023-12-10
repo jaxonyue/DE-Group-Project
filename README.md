@@ -74,16 +74,16 @@ docker run -p 7000:7000 wagess
 
 6. Navigate to **Configuration** -> **Application Settings**, and add `WEBSITES_PORT` with a value of 7000.
 
-![Alt text](port-1.png)
+![Alt text](images/port-1.png)
 
 7. Run the app using the URL provided by Azure.
 
 ## Logging
 - At first, we tried to use `App Service logs` to log the information of the app and debug. After we begin to run the app on Azure, we found that using `Log stream` is already enough and also more convenient. With the help of the log, we can easily find the error and debug and finally make the app work.
 
-![Alt text](<App Service logs.png>)
+![Alt text](<images/App Service logs.png>)
 
-![Alt text](<log stream.png>)
+![Alt text](<images/log stream.png>)
 
 
 ## Load test and quantitative assessment
@@ -96,33 +96,33 @@ locust -f load_test.py --host=https://wagess.azurewebsites.net/
 
 - At the beginning, we are using the standard S1 server plan with only one instance, and we set the number of users to 10000 and the spawn rate to 100. The test result is shown as below:
 
-![Alt text](<10000-100 original.png>)
+![Alt text](<images/10000-100 original.png>)
 
 As we can see, the average RPS(request per second) is about 100, and the maximum is 395.7 with 206.5 failures. The total percentage of faliues is also a little high. In addition, after we adjust the number of users to 100000 and the spawn rate to 1000, it even could't run. Hence, we upgrade the plan of the server in Azure, and increase the number of instance. Although, according to Azure website, the highest instances we should be able to reach is 30, but we only reach 10, and the result did get better.
 
 10000 users with spawn rate of 100:
 
-![Alt text](<10000-100 update.png>)
+![Alt text](<images/10000-100 update.png>)
 
-![Alt text](<10000-100 update table.png>)
+![Alt text](<images/10000-100 update table.png>)
 
 100000 users with spawn rate of 1000:
 
-![Alt text](<100000-1000 update.png>)
+![Alt text](<images/100000-1000 update.png>)
 
-![Alt text](<100000-1000 update table.png>)
+![Alt text](<images/100000-1000 update table.png>)
 
 Next, we upgrade the plan to the highest one(Premium v3 P5mv3), and we got a pretty good result:
 
-![Alt text](<10000-100 final.jpeg>)
+![Alt text](<images/10000-100 final.jpeg>)
 
 Finally, we adjust the user to 100000 with spawn rate of 1000 and find a suitable waiting time between each request,
 
-![Alt text](<final result-1.png>)
+![Alt text](<images/final result-1.png>)
 
 The test result is shown as below:
 
-![Alt text](<final table.png>)
+![Alt text](<images/final table.png>)
 
 - Analysis: By applying data science principles, we've quantitatively assessed the system's reliability and stability, focusing on average latency, failure rates, and charts at different levels of load. According to the chart, we can see that after performing scale up and scale out, our app finally reach a great performance with high average RPS. There were 28,531 failures with 971,573 total requests, resulting in a failure rate of approximately 2.94% (28,531 / 971,573), which is already very low, indicating the system's reliability and stability and the robustness of our server. There's a noticeable increase in average latency as the system load goes from 100 Requests/s to 1,000 Requests/s. The increase in average latency suggests that the system may be approaching or experiencing a performance bottleneck as the load intensifies. The system's scalability is a key concern, as it should ideally handle higher loads with minimal impact on latency. In our test result, we notice the wide range between the minimum and maximum response times (30 to 2264875 milliseconds), which is interesting since we didn't expect the system's performance will be various in this large scale. We think that this may due to the difference of network traffics, which make us to conclude that in order to get a more resonable result, we need to run the test multiple times, and wait enough time for each round of test.
 

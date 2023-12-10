@@ -8,7 +8,7 @@
 Team: Jaxon Yue, Haochong(Harry) Xia, Vivian Zhang, Eve
 
 ## Overview
-We use python to build this Flask app in `app.py`. This app provide the diagnosis of the World Bank Average Wages growth of 38 countries, which includes a data pipeline,a load testing with 10000 request per second, data engineering, and CI/CD integrations.
+We use python to build this Flask app in `app.py`. This app provide the diagnosis of the World Bank Average Wages growth of 38 countries, which includes a data pipeline,a load test, data engineering, and CI/CD integrations.
 
 The Overall Archetecture of our final project is shown as below:
 
@@ -43,7 +43,7 @@ The Overall Archetecture of our final project is shown as below:
 ## Key components
 - **Microservice**: Use Python to deploy a web app that can display tables and line graphs of World Bank Average Wages growth of 38 countries.
 - **Data Engineering**: Using `SQLite database` to manage wages data.
-- **Load Testing**: Test 10000 request per second.
+- **Load Testing**: Test based on request per second.
 - **Continuous Integration and Continuous Delivery**: Automated using GitHub Actions.
 - **Docker**: Containerize the application.
 - **locust**: Package used for Loading test.

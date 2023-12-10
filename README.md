@@ -49,6 +49,7 @@ The Overall Archetecture of our final project is shown as below:
 - **Docker**: Containerize the application.
 - **locust**: Package used for Loading test.
 - **CI/CD**: CI/CD is implemented using GitHub Actions for automated testing and deployment.
+- **Teamwork Reflections**: Contains every team member's teamwork reflection report.
 
 ## App Introduction
 - This app is a simple web app that can provide you a table with wage information and a line graph about the wage growth of the selected country. It includes following features:

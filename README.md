@@ -58,6 +58,8 @@ The Overall Archetecture of our final project is shown as below:
 2. A button to select which country you are interested in
 3. A button to generate the graph
 
+![Alt text](images/app.png)
+
 ## Key steps to run the application
 1. Git clone the repo, the environment will automatically be set up with necessary dependencies installed. If it doesn't, use `make install` to install `requirements.txt`.
 

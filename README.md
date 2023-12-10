@@ -47,6 +47,7 @@ The Overall Archetecture of our final project is shown as below:
 - **Load Testing**: Test based on request per second.
 - **Continuous Integration and Continuous Delivery**: Automated using GitHub Actions.
 - **Docker**: Containerize the application.
+- **IaC**: Use Terraform to create the infrastructure on Azure.
 - **locust**: Package used for Loading test.
 - **CI/CD**: CI/CD is implemented using GitHub Actions for automated testing and deployment.
 - **Teamwork Reflections**: Contains every team member's teamwork reflection report.
@@ -72,13 +73,9 @@ docker push <insert member username>/wagess
 docker run -p 7000:7000 wagess
 ```
 
-5. Create a new web app service on Azure, select Docker Container and deploy the DockerHub image.
+5. Create a new web app service on Azure, terraform will automatically create the App Service on Azure and configure it using our provided settings. You can change `main.tf` to your settings or do more customizations on Azure Portal if needed.
 
-6. Navigate to **Configuration** -> **Application Settings**, and add `WEBSITES_PORT` with a value of 7000.
-
-![Alt text](images/port-1.png)
-
-7. Run the app using the URL provided by Azure.
+6. Run the app using the URL provided by Azure.
 
 ## Logging
 - At first, we tried to use `App Service logs` to log the information of the app and debug. After we begin to run the app on Azure, we found that using `Log stream` is already enough and also more convenient. With the help of the log, we can easily find the error and debug and finally make the app work.

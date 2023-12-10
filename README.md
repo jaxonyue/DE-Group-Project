@@ -78,7 +78,15 @@ docker run -p 7000:7000 wagess
 
 7. Run the app using the URL provided by Azure.
 
-## Load test
+## Logging
+- At first, we tried to use `App Service logs` to log the information of the app and debug. After we begin to run the app on Azure, we found that using `Log stream` is already enough and also more convenient. With the help of the log, we can easily find the error and debug and finally make the app work.
+
+![Alt text](<App Service logs.png>)
+
+![Alt text](<log stream.png>)
+
+
+## Load test and quantitative assessment
 - We use `locust` to do the load test with several different setting of parameters. `Locust` is an open source load testing tool used to test the performance of web applications. It is designed to be easy to use, highly customizable, and scalable. Locust allows us to simulate the behavior of thousands of concurrent users (virtual users) and measure the performance of our application under different loads.
 - We use the following command to run the load test:
 ```

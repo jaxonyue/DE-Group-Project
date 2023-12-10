@@ -5,12 +5,13 @@
 
 ## Team Members
 
-Team: Jaxon Yue, Haochong(Harry) Xia, Vivian Zhang, Eve
+Team: Jaxon Yue, Haochong(Harry) Xia, Xiyue(Vivian) Zhang, Eve
 
 ## Overview
 We use python to build this Flask app in `app.py`. This app provide the diagnosis of the World Bank Average Wages growth of 38 countries, which includes a data pipeline,a load test, data engineering, and CI/CD integrations. Since our microservice's primary role is to process data from a data pipeline and doesn't need to be directly called by other services, we don't need an API. Instead, the microservice focus on processing data, interfacing with the data pipeline, and performing any necessary tasks without exposing an external API.
 
 The Overall Archetecture of our final project is shown as below:
+![PHOTO-2023-12-09-21-35-31](https://github.com/jaxonyue/DE-Group-Project/assets/143654445/687baed4-7c13-478f-a107-6f24615c48e4)
 
 ## Purpose
 - Microservice:

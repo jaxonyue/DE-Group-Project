@@ -128,7 +128,7 @@ The test result is shown as below:
 
 
 ## Limitations
-Dataset is samll. We only have 38 countries' wages data. We can add more countries' data to make the app more useful.
+Dataset is small. We only have 38 countries' wages data. We can add more countries' data to make the app more useful.
 
 ## Potential areas for improvement
 Use larger dataset.
